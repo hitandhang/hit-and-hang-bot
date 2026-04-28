@@ -12,12 +12,46 @@
       background: #0a0f1a;
       color: white;
       min-height: 100vh;
-      padding: 16px;
+      padding-bottom: 80px;
     }
-    .header { text-align: center; padding: 24px 0 20px; }
-    .logo { font-size: 52px; margin-bottom: 6px; }
-    .title { font-size: 26px; font-weight: 800; color: #00e676; letter-spacing: -0.5px; }
-    .subtitle { font-size: 13px; color: #555; margin-top: 4px; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* ШАПКА */
+    .header { text-align: center; padding: 24px 16px 16px; }
+    .logo { font-size: 44px; margin-bottom: 4px; }
+    .title { font-size: 24px; font-weight: 800; color: #00e676; letter-spacing: -0.5px; }
+    .subtitle { font-size: 11px; color: #555; margin-top: 3px; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* НАВИГАЦИЯ */
+    .nav {
+      display: flex;
+      background: #111827;
+      border-radius: 16px;
+      margin: 0 16px 16px;
+      padding: 4px;
+      border: 1px solid #1f2937;
+    }
+    .nav-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-btn.active {
+      background: #00e676;
+      color: #0a0f1a;
+    }
+
+    /* СТРАНИЦЫ */
+    .page { display: none; padding: 0 16px; }
+    .page.active { display: block; }
+
+    /* КАРТОЧКИ */
     .card {
       background: #111827;
       border-radius: 20px;
@@ -33,7 +67,7 @@
       font-weight: 700;
       margin-bottom: 14px;
     }
-    .tournament-name { font-size: 20px; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
+    .tournament-name { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
     .tournament-row {
       display: flex;
       align-items: center;
@@ -42,7 +76,7 @@
       font-size: 14px;
       color: #cbd5e1;
     }
-    .tournament-row .icon { font-size: 18px; width: 24px; text-align: center; }
+    .tournament-row .icon { font-size: 16px; width: 22px; text-align: center; }
     .badge {
       display: inline-block;
       background: #00e67622;
@@ -57,29 +91,16 @@
     .payment-box {
       background: #1a2535;
       border-radius: 14px;
-      padding: 16px;
+      padding: 14px;
       margin-top: 14px;
       border: 1px solid #2a3a50;
     }
-    .payment-title { font-size: 13px; color: #00e676; font-weight: 700; margin-bottom: 10px; }
-    .payment-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .payment-label { font-size: 13px; color: #888; }
-    .payment-value { font-size: 14px; font-weight: 600; color: white; }
-    .payment-note {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 10px;
-      line-height: 1.5;
-      border-top: 1px solid #2a3a50;
-      padding-top: 10px;
-    }
+    .payment-title { font-size: 13px; color: #00e676; font-weight: 700; margin-bottom: 8px; }
+    .payment-note { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+    /* ФОРМА */
     .form-group { margin-bottom: 14px; }
-    label { display: block; font-size: 12px; color: #64748b; margin-bottom: 6px; font-weight: 500; letter-spacing: 0.5px; }
+    label { display: block; font-size: 11px; color: #64748b; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
     input, select {
       width: 100%;
       padding: 13px 16px;
@@ -89,7 +110,6 @@
       color: white;
       font-size: 15px;
       outline: none;
-      transition: border-color 0.2s;
     }
     input:focus, select:focus { border-color: #00e676; }
     select option { background: #111827; }
@@ -104,190 +124,222 @@
       font-weight: 800;
       cursor: pointer;
       margin-top: 8px;
-      letter-spacing: 0.3px;
     }
-    .btn:active { opacity: 0.85; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .spots-bar {
-      background: #1f2937;
-      border-radius: 8px;
-      height: 6px;
-      margin-top: 12px;
-      overflow: hidden;
+
+    /* ПРОГРЕСС МЕСТ */
+    .spots-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
     }
-    .spots-fill {
-      background: linear-gradient(90deg, #00e676, #00b248);
-      height: 100%;
-      border-radius: 8px;
-      width: 50%;
-    }
-    .spots-text { font-size: 12px; color: #64748b; margin-top: 6px; text-align: right; }
-    .success { display: none; padding: 20px 0; }
-    .success-icon { font-size: 64px; text-align: center; margin-bottom: 16px; }
-    .success-title { font-size: 24px; font-weight: 800; color: #00e676; text-align: center; margin-bottom: 8px; }
-    .success-sub { font-size: 14px; color: #64748b; text-align: center; margin-bottom: 20px; }
-    .success-card {
-      background: #111827;
-      border-radius: 20px;
-      padding: 20px;
-      border: 1px solid #1f2937;
+    .spots-label { font-size: 13px; color: #64748b; }
+    .spots-count { font-size: 15px; font-weight: 700; color: #00e676; }
+    .spots-bar { background: #1f2937; border-radius: 8px; height: 8px; overflow: hidden; }
+    .spots-fill { background: linear-gradient(90deg, #00e676, #00b248); height: 100%; border-radius: 8px; transition: width 0.5s; }
+
+    /* СПИСОК УЧАСТНИКОВ */
+    .players-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 14px;
     }
+    .players-count {
+      font-size: 13px;
+      color: #64748b;
+    }
+    .player-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #1f2937;
+    }
+    .player-card:last-child { border-bottom: none; }
+    .player-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00e676, #00b248);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #0a0f1a;
+      flex-shrink: 0;
+    }
+    .player-info { flex: 1; }
+    .player-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .player-details { font-size: 12px; color: #64748b; }
+    .player-status {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .status-paid { background: #00e67622; color: #00e676; border: 1px solid #00e67644; }
+    .status-pending { background: #f59e0b22; color: #f59e0b; border: 1px solid #f59e0b44; }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #64748b;
+    }
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* ЭКРАН УСПЕХА */
+    .success { display: none; padding: 0 16px; }
+    .success-icon { font-size: 64px; text-align: center; margin-bottom: 16px; padding-top: 20px; }
+    .success-title { font-size: 24px; font-weight: 800; color: #00e676; text-align: center; margin-bottom: 8px; }
+    .success-sub { font-size: 14px; color: #64748b; text-align: center; margin-bottom: 20px; }
     .success-row {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid #1f2937;
       font-size: 14px;
     }
     .success-row:last-child { border-bottom: none; }
     .success-row .label { color: #64748b; }
-    .success-row .value { font-weight: 600; color: white; text-align: right; max-width: 60%; }
+    .success-row .value { font-weight: 600; text-align: right; max-width: 60%; }
     .pay-banner {
       background: linear-gradient(135deg, #00e67615, #00b24815);
       border: 1px solid #00e67630;
       border-radius: 16px;
       padding: 18px;
       text-align: center;
+      margin-top: 14px;
     }
     .pay-amount { font-size: 32px; font-weight: 800; color: #00e676; margin-bottom: 4px; }
-    .pay-label { font-size: 13px; color: #64748b; margin-bottom: 12px; }
+    .pay-label { font-size: 13px; color: #64748b; margin-bottom: 8px; }
     .pay-details { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
-    .pay-warning {
-      font-size: 12px;
-      color: #f59e0b;
-      margin-top: 12px;
-      line-height: 1.5;
-    }
+    .pay-warning { font-size: 12px; color: #f59e0b; margin-top: 10px; line-height: 1.5; }
   </style>
 </head>
 <body>
 
-<div id="app">
+<div id="main">
   <div class="header">
     <div class="logo">🎾</div>
     <div class="title">Hit & Hang</div>
     <div class="subtitle">Padel Community</div>
   </div>
 
-  <div class="card">
-    <div class="card-title">🏆 Ближайший турнир</div>
-    <div class="tournament-name">Padel NOK · Москва</div>
+  <!-- НАВИГАЦИЯ -->
+  <div class="nav">
+    <button class="nav-btn active" onclick="showPage('tournament')">🏆 Турнир</button>
+    <button class="nav-btn" onclick="showPage('players')">👥 Участники</button>
+    <button class="nav-btn" onclick="showPage('register')">📝 Запись</button>
+  </div>
 
-    <div class="tournament-row">
-      <span class="icon">📆</span>
-      <span>2 мая · 16:00–18:00</span>
-    </div>
-    <div class="tournament-row">
-      <span class="icon">📍</span>
-      <span>ТЦ Рублево, ул. Василия Ботылева, 14А</span>
-    </div>
-    <div class="tournament-row">
-      <span class="icon">🎾</span>
-      <span>Уровень: <strong>D+ / C / C+</strong></span>
-    </div>
-    <div class="tournament-row">
-      <span class="icon">🤝</span>
-      <span>Формат: <strong>Парный американо</strong></span>
-    </div>
-    <div class="tournament-row">
-      <span class="icon">👥</span>
-      <span>16 игроков / 8 пар</span>
-    </div>
+  <!-- СТРАНИЦА: ТУРНИР -->
+  <div class="page active" id="page-tournament">
+    <div class="card">
+      <div class="card-title">🏆 Ближайший турнир</div>
+      <div class="tournament-name">Padel NOK · Москва</div>
+      <div class="tournament-row"><span class="icon">📆</span><span>2 мая · 16:00–18:00</span></div>
+      <div class="tournament-row"><span class="icon">📍</span><span>ТЦ Рублево, ул. Василия Ботылева, 14А</span></div>
+      <div class="tournament-row"><span class="icon">🎾</span><span>Уровень: <strong>D+ / C / C+</strong></span></div>
+      <div class="tournament-row"><span class="icon">🤝</span><span>Формат: <strong>Парный американо</strong></span></div>
+      <div class="tournament-row"><span class="icon">👥</span><span>16 игроков / 8 пар</span></div>
+      <div><span class="badge">💰 5 500 руб. с человека</span></div>
 
-    <div>
-      <span class="badge">💰 5 500 руб. с человека</span>
-    </div>
-
-    <div class="spots-bar"><div class="spots-fill"></div></div>
-    <div class="spots-text">8 из 16 мест занято</div>
-
-    <div class="payment-box">
-      <div class="payment-title">💳 Оплата</div>
-      <div class="payment-row">
-        <span class="payment-label">Способ</span>
-        <span class="payment-value">Перевод на карту</span>
+      <div style="margin-top: 16px;">
+        <div class="spots-info">
+          <span class="spots-label">Свободных мест</span>
+          <span class="spots-count" id="spots-count">загрузка...</span>
+        </div>
+        <div class="spots-bar">
+          <div class="spots-fill" id="spots-bar" style="width: 0%"></div>
+        </div>
       </div>
-      <div class="payment-note">
-        После регистрации реквизиты для оплаты придут в бот автоматически.
+
+      <div class="payment-box">
+        <div class="payment-title">💳 Оплата</div>
+        <div class="payment-note">Перевод на карту. После регистрации реквизиты придут в бот автоматически.</div>
       </div>
+    </div>
+
+    <button class="btn" onclick="showPage('register'); setActiveNav(2)">Записаться на турнир →</button>
+  </div>
+
+  <!-- СТРАНИЦА: УЧАСТНИКИ -->
+  <div class="page" id="page-players">
+    <div class="card">
+      <div class="players-header">
+        <div class="card-title" style="margin-bottom:0">👥 Участники</div>
+        <div class="players-count" id="players-count"></div>
+      </div>
+      <div id="players-list"><div class="loading">Загружаем список...</div></div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title">📝 Регистрация</div>
-    <div class="form-group">
-      <label>ИМЯ И ФАМИЛИЯ</label>
-      <input type="text" id="name" placeholder="Имя Фамилия">
+  <!-- СТРАНИЦА: ЗАПИСЬ -->
+  <div class="page" id="page-register">
+    <div class="card">
+      <div class="card-title">📝 Регистрация</div>
+      <div class="form-group">
+        <label>Имя и фамилия</label>
+        <input type="text" id="name" placeholder="Имя Фамилия">
+      </div>
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="tel" id="phone" placeholder="+7 900 000 00 00">
+      </div>
+      <div class="form-group">
+        <label>Уровень игры</label>
+        <select id="level">
+          <option value="">Выберите уровень</option>
+          <option value="D+">D+</option>
+          <option value="C">C</option>
+          <option value="C+">C+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Предпочитаемая сторона</label>
+        <select id="side">
+          <option value="Правая">Правая</option>
+          <option value="Левая">Левая</option>
+          <option value="Обе">Обе</option>
+        </select>
+      </div>
+      <button class="btn" id="submitBtn" onclick="register()">Записаться →</button>
     </div>
-    <div class="form-group">
-      <label>ТЕЛЕФОН</label>
-      <input type="tel" id="phone" placeholder="+7 900 000 00 00">
-    </div>
-    <div class="form-group">
-      <label>УРОВЕНЬ ИГРЫ</label>
-      <select id="level">
-        <option value="">Выберите уровень</option>
-        <option value="D+">D+</option>
-        <option value="C">C</option>
-        <option value="C+">C+</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>ПРЕДПОЧИТАЕМАЯ СТОРОНА</label>
-      <select id="side">
-        <option value="Правая">Правая</option>
-        <option value="Левая">Левая</option>
-        <option value="Обе">Обе</option>
-      </select>
-    </div>
-    <button class="btn" id="submitBtn" onclick="register()">Записаться на турнир →</button>
   </div>
 </div>
 
+<!-- ЭКРАН УСПЕХА -->
 <div class="success" id="success">
   <div class="success-icon">🎉</div>
   <div class="success-title">Вы записаны!</div>
   <div class="success-sub">Реквизиты для оплаты отправлены в бот 👆</div>
 
-  <div class="success-card">
+  <div class="card">
     <div class="card-title">📋 Ваша регистрация</div>
-    <div class="success-row">
-      <span class="label">Турнир</span>
-      <span class="value">Padel NOK · 2 мая</span>
-    </div>
-    <div class="success-row">
-      <span class="label">Время</span>
-      <span class="value">16:00–18:00</span>
-    </div>
-    <div class="success-row">
-      <span class="label">Формат</span>
-      <span class="value">Парный американо</span>
-    </div>
-    <div class="success-row">
-      <span class="label">Адрес</span>
-      <span class="value">ул. Василия Ботылева, 14А</span>
-    </div>
-    <div class="success-row">
-      <span class="label">Игрок</span>
-      <span class="value" id="success-name"></span>
-    </div>
-    <div class="success-row">
-      <span class="label">Уровень</span>
-      <span class="value" id="success-level"></span>
-    </div>
+    <div class="success-row"><span class="label">Турнир</span><span class="value">Padel NOK · 2 мая</span></div>
+    <div class="success-row"><span class="label">Время</span><span class="value">16:00–18:00</span></div>
+    <div class="success-row"><span class="label">Формат</span><span class="value">Парный американо</span></div>
+    <div class="success-row"><span class="label">Адрес</span><span class="value">ул. Василия Ботылева, 14А</span></div>
+    <div class="success-row"><span class="label">Игрок</span><span class="value" id="success-name"></span></div>
+    <div class="success-row"><span class="label">Уровень</span><span class="value" id="success-level"></span></div>
   </div>
 
   <div class="pay-banner">
     <div class="pay-amount">5 500 ₽</div>
     <div class="pay-label">Взнос за участие</div>
-    <div class="pay-details">
-      Реквизиты для оплаты отправлены в бот 👆<br>
-      После оплаты пришлите скриншот чека в бот
-    </div>
-    <div class="pay-warning">
-      ⚠️ Место бронируется после подтверждения оплаты
-    </div>
+    <div class="pay-details">Реквизиты отправлены в бот 👆<br>После оплаты пришлите скриншот чека в бот</div>
+    <div class="pay-warning">⚠️ Место бронируется после подтверждения оплаты</div>
   </div>
 </div>
 
@@ -296,12 +348,86 @@
   tg.expand();
   tg.setHeaderColor('#0a0f1a');
 
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwcWAFLnJ8dcneasJ4ZXvtEbBvueqZwYnbklr1UKRVfYOb0400ZW8j9HnKIEwxKO0iG5A/exec';
+  const MAX_PLAYERS = 16;
+
   const user = tg.initDataUnsafe?.user;
   if (user) {
     const nameField = document.getElementById('name');
     nameField.value = ((user.first_name || '') + ' ' + (user.last_name || '')).trim();
   }
 
+  // Навигация
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    if (page === 'players') loadPlayers();
+  }
+
+  function setActiveNav(index) {
+    document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+  }
+
+  document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => setActiveNav(i));
+  });
+
+  // Загрузка участников
+  async function loadPlayers() {
+    try {
+      const response = await fetch(SHEET_URL);
+      const data = await response.json();
+
+      if (!data.success) throw new Error('Ошибка загрузки');
+
+      const players = data.players || [];
+      const taken = players.length;
+      const free = MAX_PLAYERS - taken;
+
+      // Обновляем счётчик мест на странице турнира
+      document.getElementById('spots-count').textContent = `${free} из ${MAX_PLAYERS}`;
+      document.getElementById('spots-bar').style.width = `${(taken / MAX_PLAYERS) * 100}%`;
+      document.getElementById('players-count').textContent = `${taken} из ${MAX_PLAYERS}`;
+
+      const list = document.getElementById('players-list');
+
+      if (players.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">🎾</div>
+            <p>Пока никто не записался.<br>Будь первым!</p>
+          </div>`;
+        return;
+      }
+
+      list.innerHTML = players.map((p, i) => {
+        const initials = p.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+        const isPaid = p.status === 'Оплачено';
+        return `
+          <div class="player-card">
+            <div class="player-avatar">${initials}</div>
+            <div class="player-info">
+              <div class="player-name">${p.name}</div>
+              <div class="player-details">${p.level} · ${p.side}</div>
+            </div>
+            <span class="player-status ${isPaid ? 'status-paid' : 'status-pending'}">
+              ${isPaid ? '✅ Оплачено' : '⏳ Ожидает'}
+            </span>
+          </div>`;
+      }).join('');
+
+    } catch(err) {
+      document.getElementById('players-list').innerHTML =
+        '<div class="loading">Не удалось загрузить список</div>';
+    }
+  }
+
+  // Загружаем количество мест сразу
+  loadPlayers();
+
+  // Регистрация
   async function register() {
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -317,9 +443,7 @@
     btn.textContent = 'Отправляем...';
 
     const data = {
-      name,
-      phone,
-      level,
+      name, phone, level,
       side: document.getElementById('side').value,
       telegram_id: user?.id || '',
       telegram_username: user?.username || '',
@@ -338,18 +462,18 @@
       if (result.success) {
         document.getElementById('success-name').textContent = name;
         document.getElementById('success-level').textContent = level;
-        document.getElementById('app').style.display = 'none';
+        document.getElementById('main').style.display = 'none';
         document.getElementById('success').style.display = 'block';
         if (tg?.sendData) tg.sendData(JSON.stringify(data));
       } else {
         alert('Ошибка при записи. Попробуйте ещё раз.');
         btn.disabled = false;
-        btn.textContent = 'Записаться на турнир →';
+        btn.textContent = 'Записаться →';
       }
     } catch(err) {
       alert('Ошибка соединения. Попробуйте ещё раз.');
       btn.disabled = false;
-      btn.textContent = 'Записаться на турнир →';
+      btn.textContent = 'Записаться →';
     }
   }
 </script>
