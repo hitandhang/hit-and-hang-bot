@@ -14,14 +14,10 @@
       min-height: 100vh;
       padding: 16px;
     }
-    .header {
-      text-align: center;
-      padding: 24px 0 20px;
-    }
+    .header { text-align: center; padding: 24px 0 20px; }
     .logo { font-size: 52px; margin-bottom: 6px; }
     .title { font-size: 26px; font-weight: 800; color: #00e676; letter-spacing: -0.5px; }
     .subtitle { font-size: 13px; color: #555; margin-top: 4px; text-transform: uppercase; letter-spacing: 2px; }
-
     .card {
       background: #111827;
       border-radius: 20px;
@@ -37,13 +33,7 @@
       font-weight: 700;
       margin-bottom: 14px;
     }
-
-    .tournament-name {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 14px;
-      line-height: 1.3;
-    }
+    .tournament-name { font-size: 20px; font-weight: 800; margin-bottom: 14px; line-height: 1.3; }
     .tournament-row {
       display: flex;
       align-items: center;
@@ -64,7 +54,6 @@
       font-weight: 600;
       margin-top: 4px;
     }
-
     .payment-box {
       background: #1a2535;
       border-radius: 14px;
@@ -72,12 +61,7 @@
       margin-top: 14px;
       border: 1px solid #2a3a50;
     }
-    .payment-title {
-      font-size: 13px;
-      color: #00e676;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+    .payment-title { font-size: 13px; color: #00e676; font-weight: 700; margin-bottom: 10px; }
     .payment-row {
       display: flex;
       justify-content: space-between;
@@ -94,7 +78,6 @@
       border-top: 1px solid #2a3a50;
       padding-top: 10px;
     }
-
     .form-group { margin-bottom: 14px; }
     label { display: block; font-size: 12px; color: #64748b; margin-bottom: 6px; font-weight: 500; letter-spacing: 0.5px; }
     input, select {
@@ -110,7 +93,6 @@
     }
     input:focus, select:focus { border-color: #00e676; }
     select option { background: #111827; }
-
     .btn {
       width: 100%;
       padding: 17px;
@@ -126,7 +108,6 @@
     }
     .btn:active { opacity: 0.85; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
     .spots-bar {
       background: #1f2937;
       border-radius: 8px;
@@ -140,13 +121,7 @@
       border-radius: 8px;
       width: 50%;
     }
-    .spots-text {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 6px;
-      text-align: right;
-    }
-
+    .spots-text { font-size: 12px; color: #64748b; margin-top: 6px; text-align: right; }
     .success { display: none; padding: 20px 0; }
     .success-icon { font-size: 64px; text-align: center; margin-bottom: 16px; }
     .success-title { font-size: 24px; font-weight: 800; color: #00e676; text-align: center; margin-bottom: 8px; }
@@ -178,6 +153,29 @@
     .pay-amount { font-size: 32px; font-weight: 800; color: #00e676; margin-bottom: 4px; }
     .pay-label { font-size: 13px; color: #64748b; margin-bottom: 12px; }
     .pay-details { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
+    .pay-card {
+      background: #1a2535;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+      text-align: left;
+    }
+    .pay-card-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .pay-card-row:last-child { margin-bottom: 0; }
+    .pay-card-label { color: #64748b; }
+    .pay-card-value { color: white; font-weight: 600; }
+    .pay-warning {
+      font-size: 12px;
+      color: #f59e0b;
+      margin-top: 12px;
+      text-align: center;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -206,6 +204,10 @@
       <span>Уровень: <strong>D+ / C / C+</strong></span>
     </div>
     <div class="tournament-row">
+      <span class="icon">🤝</span>
+      <span>Формат: <strong>Парный американо</strong></span>
+    </div>
+    <div class="tournament-row">
       <span class="icon">👥</span>
       <span>16 игроков / 8 пар</span>
     </div>
@@ -224,7 +226,7 @@
         <span class="payment-value">Перевод на карту</span>
       </div>
       <div class="payment-note">
-        После регистрации вы получите реквизиты для оплаты в боте. Место бронируется после подтверждения перевода.
+        После регистрации реквизиты придут в бот. Место бронируется после подтверждения перевода.
       </div>
     </div>
   </div>
@@ -251,9 +253,9 @@
     <div class="form-group">
       <label>ПРЕДПОЧИТАЕМАЯ СТОРОНА</label>
       <select id="side">
-        <option value="Не важно">Не важно</option>
-        <option value="Левая (Reves)">Левая (Reves)</option>
-        <option value="Правая (Drive)">Правая (Drive)</option>
+        <option value="Правая">Правая</option>
+        <option value="Левая">Левая</option>
+        <option value="Обе">Обе</option>
       </select>
     </div>
     <button class="btn" id="submitBtn" onclick="register()">Записаться на турнир →</button>
@@ -263,7 +265,7 @@
 <div class="success" id="success">
   <div class="success-icon">🎉</div>
   <div class="success-title">Вы записаны!</div>
-  <div class="success-sub">Проверьте бот — там все детали</div>
+  <div class="success-sub">Реквизиты для оплаты отправлены в бот 👆</div>
 
   <div class="success-card">
     <div class="card-title">📋 Ваша регистрация</div>
@@ -274,6 +276,10 @@
     <div class="success-row">
       <span class="label">Время</span>
       <span class="value">16:00–18:00</span>
+    </div>
+    <div class="success-row">
+      <span class="label">Формат</span>
+      <span class="value">Парный американо</span>
     </div>
     <div class="success-row">
       <span class="label">Адрес</span>
@@ -292,9 +298,22 @@
   <div class="pay-banner">
     <div class="pay-amount">5 500 ₽</div>
     <div class="pay-label">Взнос за участие</div>
-    <div class="pay-details">
-      Реквизиты для оплаты отправлены в бот 👆<br>
-      Место бронируется после перевода
+    <div class="pay-card">
+      <div class="pay-card-row">
+        <span class="pay-card-label">Банк</span>
+        <span class="pay-card-value">Сбербанк</span>
+      </div>
+      <div class="pay-card-row">
+        <span class="pay-card-label">Номер</span>
+        <span class="pay-card-value">+7 985 147-45-28</span>
+      </div>
+      <div class="pay-card-row">
+        <span class="pay-card-label">Комментарий</span>
+        <span class="pay-card-value">Падел турнир 2 мая</span>
+      </div>
+    </div>
+    <div class="pay-warning">
+      ⚠️ После оплаты пришлите скриншот перевода в этот бот — мы подтвердим бронь!
     </div>
   </div>
 </div>
