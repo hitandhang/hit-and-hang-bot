@@ -153,27 +153,10 @@
     .pay-amount { font-size: 32px; font-weight: 800; color: #00e676; margin-bottom: 4px; }
     .pay-label { font-size: 13px; color: #64748b; margin-bottom: 12px; }
     .pay-details { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
-    .pay-card {
-      background: #1a2535;
-      border-radius: 12px;
-      padding: 14px;
-      margin-top: 12px;
-      text-align: left;
-    }
-    .pay-card-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-    .pay-card-row:last-child { margin-bottom: 0; }
-    .pay-card-label { color: #64748b; }
-    .pay-card-value { color: white; font-weight: 600; }
     .pay-warning {
       font-size: 12px;
       color: #f59e0b;
       margin-top: 12px;
-      text-align: center;
       line-height: 1.5;
     }
   </style>
@@ -226,7 +209,7 @@
         <span class="payment-value">Перевод на карту</span>
       </div>
       <div class="payment-note">
-        После регистрации реквизиты придут в бот. Место бронируется после подтверждения перевода.
+        После регистрации реквизиты для оплаты придут в бот автоматически.
       </div>
     </div>
   </div>
@@ -298,22 +281,12 @@
   <div class="pay-banner">
     <div class="pay-amount">5 500 ₽</div>
     <div class="pay-label">Взнос за участие</div>
-    <div class="pay-card">
-      <div class="pay-card-row">
-        <span class="pay-card-label">Банк</span>
-        <span class="pay-card-value">Сбербанк</span>
-      </div>
-      <div class="pay-card-row">
-        <span class="pay-card-label">Номер</span>
-        <span class="pay-card-value">+7 985 147-45-28</span>
-      </div>
-      <div class="pay-card-row">
-        <span class="pay-card-label">Комментарий</span>
-        <span class="pay-card-value">Падел турнир 2 мая</span>
-      </div>
+    <div class="pay-details">
+      Реквизиты для оплаты отправлены в бот 👆<br>
+      После оплаты пришлите скриншот чека в бот
     </div>
     <div class="pay-warning">
-      ⚠️ После оплаты пришлите скриншот перевода в этот бот — мы подтвердим бронь!
+      ⚠️ Место бронируется после подтверждения оплаты
     </div>
   </div>
 </div>
