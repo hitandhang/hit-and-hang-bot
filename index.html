@@ -182,18 +182,13 @@
       phone,
       level,
       side: document.getElementById('side').value,
-      telegram_id: user?.id || '',
-      telegram_username: user?.username || ''
-    };
-
-    fetch('https://script.google.com/macros/s/AKfycbwcWAFLnJ8dcneasJ4ZXvtEbBvueqZwYnbklr1UKRVfYOb0400ZW8j9HnKIEwxKO0iG5A/exec', {
+      fetch('/api/bot?action=register', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(data)
 }).then(() => {
   tg.sendData(JSON.stringify(data));
 });
-
     document.getElementById('app').style.display = 'none';
     document.getElementById('success').style.display = 'block';
   }
