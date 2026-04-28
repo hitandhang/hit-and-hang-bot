@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hit & Hang Padel</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f1923;
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      padding: 30px 0 20px;
+    }
+    .logo {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #00e676;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #888;
+      margin-top: 4px;
+    }
+    .card {
+      background: #1a2635;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: 16px;
+      color: #00e676;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px 16px;
+      background: #0f1923;
+      border: 1px solid #2a3a4a;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: #00e676;
+    }
+    select option {
+      background: #1a2635;
+    }
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: #00e676;
+      color: #0f1923;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn:active { opacity: 0.8; }
+    .success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success .icon { font-size: 64px; margin-bottom: 16px; }
+    .success h2 { font-size: 22px; color: #00e676; margin-bottom: 8px; }
+    .success p { color: #888; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div class="header">
+    <div class="logo">🎾</div>
+    <div class="title">Hit & Hang</div>
+    <div class="subtitle">Padel Community</div>
+  </div>
+
+  <div class="card">
+    <h2>🏆 Ближайший турнир</h2>
+    <div id="tournament-info">
+      <p style="color:#ccc; font-size:15px;">Загрузка...</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📝 Регистрация</h2>
+    <div class="form-group">
+      <label>Ваше имя</label>
+      <input type="text" id="name" placeholder="Имя Фамилия">
+    </div>
+    <div class="form-group">
+      <label>Телефон</label>
+      <input type="tel" id="phone" placeholder="+31 6 00 00 00 00">
+    </div>
+    <div class="form-group">
+      <label>Уровень игры</label>
+      <select id="level">
+        <option value="">Выберите уровень</option>
+        <option value="beginner">Начинающий (1.0 – 2.5)</option>
+        <option value="intermediate">Средний (3.0 – 3.5)</option>
+        <option value="advanced">Продвинутый (4.0+)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Предпочитаемая сторона</label>
+      <select id="side">
+        <option value="">Не важно</option>
+        <option value="left">Левая (Reves)</option>
+        <option value="right">Правая (Drive)</option>
+      </select>
+    </div>
+    <button class="btn" onclick="register()">Записаться на турнир →</button>
+  </div>
+</div>
+
+<div class="success" id="success">
+  <div class="icon">🎉</div>
+  <h2>Вы записаны!</h2>
+  <p>Ждём вас на корте.<br>Детали придут в бот.</p>
+</div>
+
+<script>
+  const tg = window.Telegram.WebApp;
+  tg.expand();
+  tg.setHeaderColor('#0f1923');
+
+  // Заполняем имя автоматически из Telegram
+  const user = tg.initDataUnsafe?.user;
+  if (user) {
+    const nameField = document.getElementById('name');
+    nameField.value = (user.first_name || '') + ' ' + (user.last_name || '');
+    nameField.value = nameField.value.trim();
+  }
+
+  // Информация о турнире (пока статичная, потом подключим динамику)
+  document.getElementById('tournament-info').innerHTML = `
+    <p style="font-size:18px; font-weight:700; margin-bottom:8px;">Турнир #1</p>
+    <p style="color:#888; font-size:14px;">📅 Суббота, 3 мая · 14:00</p>
+    <p style="color:#888; font-size:14px;">📍 Padel Club Amsterdam</p>
+    <p style="color:#00e676; font-size:14px; margin-top:8px;">💰 15€ · Осталось мест: 8</p>
+  `;
+
+  function register() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const level = document.getElementById('level').value;
+
+    if (!name || !phone || !level) {
+      alert('Пожалуйста, заполните все обязательные поля');
+      return;
+    }
+
+    const data = {
+      name,
+      phone,
+      level,
+      side: document.getElementById('side').value,
+      telegram_id: user?.id || '',
+      telegram_username: user?.username || ''
+    };
+
+    tg.sendData(JSON.stringify(data));
+
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
