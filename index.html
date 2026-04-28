@@ -186,7 +186,13 @@
       telegram_username: user?.username || ''
     };
 
-    tg.sendData(JSON.stringify(data));
+    fetch('https://script.google.com/macros/s/AKfycbwcWAFLnJ8dcneasJ4ZXvtEbBvueqZwYnbklr1UKRVfYOb0400ZW8j9HnKIEwxKO0iG5A/exec', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+}).then(() => {
+  tg.sendData(JSON.stringify(data));
+});
 
     document.getElementById('app').style.display = 'none';
     document.getElementById('success').style.display = 'block';
