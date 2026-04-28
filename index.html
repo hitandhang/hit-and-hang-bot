@@ -8,39 +8,176 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f1923;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0f1a;
       color: white;
       min-height: 100vh;
-      padding: 20px;
+      padding: 16px;
     }
-    .header { text-align: center; padding: 30px 0 20px; }
-    .logo { font-size: 48px; margin-bottom: 8px; }
-    .title { font-size: 24px; font-weight: 700; color: #00e676; }
-    .subtitle { font-size: 14px; color: #888; margin-top: 4px; }
-    .card { background: #1a2635; border-radius: 16px; padding: 20px; margin-bottom: 16px; }
-    .card h2 { font-size: 16px; color: #00e676; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .header {
+      text-align: center;
+      padding: 24px 0 20px;
+    }
+    .logo { font-size: 52px; margin-bottom: 6px; }
+    .title { font-size: 26px; font-weight: 800; color: #00e676; letter-spacing: -0.5px; }
+    .subtitle { font-size: 13px; color: #555; margin-top: 4px; text-transform: uppercase; letter-spacing: 2px; }
+
+    .card {
+      background: #111827;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 14px;
+      border: 1px solid #1f2937;
+    }
+    .card-title {
+      font-size: 11px;
+      color: #00e676;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .tournament-name {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .tournament-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+    .tournament-row .icon { font-size: 18px; width: 24px; text-align: center; }
+    .badge {
+      display: inline-block;
+      background: #00e67622;
+      color: #00e676;
+      border: 1px solid #00e67644;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .payment-box {
+      background: #1a2535;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 14px;
+      border: 1px solid #2a3a50;
+    }
+    .payment-title {
+      font-size: 13px;
+      color: #00e676;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .payment-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .payment-label { font-size: 13px; color: #888; }
+    .payment-value { font-size: 14px; font-weight: 600; color: white; }
+    .payment-note {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 10px;
+      line-height: 1.5;
+      border-top: 1px solid #2a3a50;
+      padding-top: 10px;
+    }
+
     .form-group { margin-bottom: 14px; }
-    label { display: block; font-size: 13px; color: #888; margin-bottom: 6px; }
+    label { display: block; font-size: 12px; color: #64748b; margin-bottom: 6px; font-weight: 500; letter-spacing: 0.5px; }
     input, select {
-      width: 100%; padding: 12px 16px;
-      background: #0f1923; border: 1px solid #2a3a4a;
-      border-radius: 10px; color: white; font-size: 15px; outline: none;
+      width: 100%;
+      padding: 13px 16px;
+      background: #0a0f1a;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
     }
     input:focus, select:focus { border-color: #00e676; }
-    select option { background: #1a2635; }
+    select option { background: #111827; }
+
     .btn {
-      width: 100%; padding: 16px;
-      background: #00e676; color: #0f1923;
-      border: none; border-radius: 12px;
-      font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px;
+      width: 100%;
+      padding: 17px;
+      background: linear-gradient(135deg, #00e676, #00b248);
+      color: #0a0f1a;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 8px;
+      letter-spacing: 0.3px;
     }
-    .btn:active { opacity: 0.8; }
+    .btn:active { opacity: 0.85; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .success { display: none; text-align: center; padding: 40px 20px; }
-    .success .icon { font-size: 64px; margin-bottom: 16px; }
-    .success h2 { font-size: 22px; color: #00e676; margin-bottom: 8px; }
-    .success p { color: #888; font-size: 14px; }
+
+    .spots-bar {
+      background: #1f2937;
+      border-radius: 8px;
+      height: 6px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    .spots-fill {
+      background: linear-gradient(90deg, #00e676, #00b248);
+      height: 100%;
+      border-radius: 8px;
+      width: 50%;
+    }
+    .spots-text {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    .success { display: none; padding: 20px 0; }
+    .success-icon { font-size: 64px; text-align: center; margin-bottom: 16px; }
+    .success-title { font-size: 24px; font-weight: 800; color: #00e676; text-align: center; margin-bottom: 8px; }
+    .success-sub { font-size: 14px; color: #64748b; text-align: center; margin-bottom: 20px; }
+    .success-card {
+      background: #111827;
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid #1f2937;
+      margin-bottom: 14px;
+    }
+    .success-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #1f2937;
+      font-size: 14px;
+    }
+    .success-row:last-child { border-bottom: none; }
+    .success-row .label { color: #64748b; }
+    .success-row .value { font-weight: 600; color: white; text-align: right; max-width: 60%; }
+    .pay-banner {
+      background: linear-gradient(135deg, #00e67615, #00b24815);
+      border: 1px solid #00e67630;
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+    .pay-amount { font-size: 32px; font-weight: 800; color: #00e676; margin-bottom: 4px; }
+    .pay-label { font-size: 13px; color: #64748b; margin-bottom: 12px; }
+    .pay-details { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
   </style>
 </head>
 <body>
@@ -53,40 +190,70 @@
   </div>
 
   <div class="card">
-    <h2>🏆 Ближайший турнир</h2>
-    <div id="tournament-info">
-      <p style="font-size:18px; font-weight:700; margin-bottom:8px;">Турнир #1</p>
-      <p style="color:#888; font-size:14px;">📅 Суббота, 3 мая · 14:00</p>
-      <p style="color:#888; font-size:14px;">📍 Padel Club Amsterdam</p>
-      <p style="color:#00e676; font-size:14px; margin-top:8px;">💰 15€ · Осталось мест: 8</p>
+    <div class="card-title">🏆 Ближайший турнир</div>
+    <div class="tournament-name">Padel NOK · Москва</div>
+
+    <div class="tournament-row">
+      <span class="icon">📆</span>
+      <span>2 мая · 16:00–18:00</span>
+    </div>
+    <div class="tournament-row">
+      <span class="icon">📍</span>
+      <span>ТЦ Рублево, ул. Василия Ботылева, 14А</span>
+    </div>
+    <div class="tournament-row">
+      <span class="icon">🎾</span>
+      <span>Уровень: <strong>D+ / C / C+</strong></span>
+    </div>
+    <div class="tournament-row">
+      <span class="icon">👥</span>
+      <span>16 игроков / 8 пар</span>
+    </div>
+
+    <div>
+      <span class="badge">💰 5 500 руб. с человека</span>
+    </div>
+
+    <div class="spots-bar"><div class="spots-fill"></div></div>
+    <div class="spots-text">8 из 16 мест занято</div>
+
+    <div class="payment-box">
+      <div class="payment-title">💳 Оплата</div>
+      <div class="payment-row">
+        <span class="payment-label">Способ</span>
+        <span class="payment-value">Перевод на карту</span>
+      </div>
+      <div class="payment-note">
+        После регистрации вы получите реквизиты для оплаты в боте. Место бронируется после подтверждения перевода.
+      </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>📝 Регистрация</h2>
+    <div class="card-title">📝 Регистрация</div>
     <div class="form-group">
-      <label>Ваше имя</label>
+      <label>ИМЯ И ФАМИЛИЯ</label>
       <input type="text" id="name" placeholder="Имя Фамилия">
     </div>
     <div class="form-group">
-      <label>Телефон</label>
-      <input type="tel" id="phone" placeholder="+31 6 00 00 00 00">
+      <label>ТЕЛЕФОН</label>
+      <input type="tel" id="phone" placeholder="+7 900 000 00 00">
     </div>
     <div class="form-group">
-      <label>Уровень игры</label>
+      <label>УРОВЕНЬ ИГРЫ</label>
       <select id="level">
         <option value="">Выберите уровень</option>
-        <option value="beginner">Начинающий (1.0 – 2.5)</option>
-        <option value="intermediate">Средний (3.0 – 3.5)</option>
-        <option value="advanced">Продвинутый (4.0+)</option>
+        <option value="D+">D+</option>
+        <option value="C">C</option>
+        <option value="C+">C+</option>
       </select>
     </div>
     <div class="form-group">
-      <label>Предпочитаемая сторона</label>
+      <label>ПРЕДПОЧИТАЕМАЯ СТОРОНА</label>
       <select id="side">
-        <option value="">Не важно</option>
-        <option value="left">Левая (Reves)</option>
-        <option value="right">Правая (Drive)</option>
+        <option value="Не важно">Не важно</option>
+        <option value="Левая (Reves)">Левая (Reves)</option>
+        <option value="Правая (Drive)">Правая (Drive)</option>
       </select>
     </div>
     <button class="btn" id="submitBtn" onclick="register()">Записаться на турнир →</button>
@@ -94,15 +261,48 @@
 </div>
 
 <div class="success" id="success">
-  <div class="icon">🎉</div>
-  <h2>Вы записаны!</h2>
-  <p>Ждём вас на корте.<br>Детали придут в бот.</p>
+  <div class="success-icon">🎉</div>
+  <div class="success-title">Вы записаны!</div>
+  <div class="success-sub">Проверьте бот — там все детали</div>
+
+  <div class="success-card">
+    <div class="card-title">📋 Ваша регистрация</div>
+    <div class="success-row">
+      <span class="label">Турнир</span>
+      <span class="value">Padel NOK · 2 мая</span>
+    </div>
+    <div class="success-row">
+      <span class="label">Время</span>
+      <span class="value">16:00–18:00</span>
+    </div>
+    <div class="success-row">
+      <span class="label">Адрес</span>
+      <span class="value">ул. Василия Ботылева, 14А</span>
+    </div>
+    <div class="success-row">
+      <span class="label">Игрок</span>
+      <span class="value" id="success-name"></span>
+    </div>
+    <div class="success-row">
+      <span class="label">Уровень</span>
+      <span class="value" id="success-level"></span>
+    </div>
+  </div>
+
+  <div class="pay-banner">
+    <div class="pay-amount">5 500 ₽</div>
+    <div class="pay-label">Взнос за участие</div>
+    <div class="pay-details">
+      Реквизиты для оплаты отправлены в бот 👆<br>
+      Место бронируется после перевода
+    </div>
+  </div>
 </div>
 
 <script>
   const tg = window.Telegram.WebApp;
   tg.expand();
-  tg.setHeaderColor('#0f1923');
+  tg.setHeaderColor('#0a0f1a');
 
   const user = tg.initDataUnsafe?.user;
   if (user) {
@@ -131,7 +331,7 @@
       side: document.getElementById('side').value,
       telegram_id: user?.id || '',
       telegram_username: user?.username || '',
-      tournament: 'Турнир #1'
+      tournament: 'Padel NOK · 2 мая · 16:00'
     };
 
     try {
@@ -144,6 +344,8 @@
       const result = await response.json();
 
       if (result.success) {
+        document.getElementById('success-name').textContent = name;
+        document.getElementById('success-level').textContent = level;
         document.getElementById('app').style.display = 'none';
         document.getElementById('success').style.display = 'block';
         if (tg?.sendData) tg.sendData(JSON.stringify(data));
