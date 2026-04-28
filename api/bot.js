@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const MINI_APP_URL = process.env.MINI_APP_URL;
 const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
@@ -17,7 +18,8 @@ export default async function handler(req, res) {
       });
 
       // Отправляем подтверждение игроку
-      if (data.telegram_id) {
+      if (data.telegram_id || data.telegram_id === 0) {
+    const chatId = String(data.telegram_id);
         await sendMessage(data.telegram_id,
           `✅ *Регистрация подтверждена!*\n\n` +
           `👤 *Игрок:* ${data.name}\n` +
