@@ -1,10 +1,25 @@
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const MINI_APP_URL = process.env.MINI_APP_URL;
+const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(200).json({ ok: true });
+  // Сохранение в таблицу
+  if (req.method === 'POST' && req.query.action === 'register') {
+    try {
+      const data = req.body;
+      await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      return res.status(200).json({ success: true });
+    } catch(err) {
+      return res.status(500).json({ success: false, error: err.message });
+    }
   }
+
+  // Обработка сообщений от Telegram
+  if (req.method !== 'POST') return res.status(200).json({ ok: true });
 
   const { message } = req.body;
   if (!message) return res.status(200).json({ ok: true });
@@ -13,7 +28,7 @@ export default async function handler(req, res) {
   const text = message.text || '';
 
   if (text === '/start') {
-    await sendMessage(chatId, 
+    await sendMessage(chatId,
       `👋 Привет, ${message.from.first_name}!\n\n` +
       `Добро пожаловать в *Hit & Hang Padel Community* 🎾\n\n` +
       `Здесь ты можешь:\n` +
