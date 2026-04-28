@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST' && req.query.action === 'register') {
     try {
       const data = req.body;
+      console.log('Register data:', JSON.stringify(data));
 
       // Сохраняем в таблицу
       await fetch(GOOGLE_SHEET_URL, {
